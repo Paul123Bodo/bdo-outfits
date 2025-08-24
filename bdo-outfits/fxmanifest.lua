@@ -10,6 +10,10 @@ lua54 'yes'
 client_scripts { 
   'client/*.lua',  
 }
+
+shared_scripts {
+  'client/language.lua',
+}
   
 dependencies { 
   'bdo-input', 
