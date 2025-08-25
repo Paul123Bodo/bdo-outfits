@@ -3,12 +3,62 @@ AddEventHandler("onResourceStop", function(resourceName)
 end)
 
 local PlayerSkinData = {}
-local CategoryNames = { [0x9925C067] = joaat('hats'), [0x1D4C528A] = joaat('pants'), [0x2026C46D] = joaat('shirts_full'), [0x485EE834] = joaat('vests'), [0xE06D30CE] = joaat('coats'), [0x7BC10759] = joaat('gloves'),
-    [0x777EC6EF] = joaat('boots'), [0xAF14310B] = joaat('poncho'), [0x877A2CF7] = joaat('suspenders'), [0x5FC29285] = joaat('neckwear'), [0x3C1A74CD] = joaat('neckwear2'), [0x662AC34] = joaat('coat2'), [0x9B2C8B89] = joaat('gunbelt'),
-    [0xF1542D11] = joaat('gunbelt_accs'), [0xA6D134C6] = joaat('belt'), [0xFAE9107F] = joaat('buckle'), [0xB6B6122D] = joaat('holster'), [0xC04F118B] = joaat('holster2'), [0x94504D26] = joaat('satchel'), [0x83887E88] = joaat('loadout'),
-    [0xEABE0032] = joaat('gauntlets'), [0x7A96FACA] = joaat('ringl'), [0xF16A1D23] = joaat('ringr'), [0x7B6B036F] = joaat('bracelet'), [0x79D7DF96] = joaat('accessory'), [0x18729F39] = joaat('spurs'), [0x3107499B] = joaat('chaps'),
-    [0xFBB5D87F] = joaat('boots2'), [0x5A6D85E6] = joaat('mask'), [0x9B0A2BFE] = joaat('apron'), [0x96EDAE5C] = joaat('teeth'), [0xB3966C9] = joaat('BODIES_UPPER'), [0x823687F5] = joaat('BODIES_LOWER'), [1065202434] = '1065202434', }
-
+local CategoryNames = {
+    [0x9925C067] = joaat('hats'),
+    [0x1D4C528A] = joaat('pants'),
+    [0x2026C46D] = joaat('shirts_full'),
+    [0x485EE834] = joaat('vests'),
+    [0xE06D30CE] = joaat('coats'),
+    [0xEABE0032] = joaat('gloves'),
+    [0x777EC6EF] = joaat('boots'),
+    [0xAF14310B] = joaat('ponchos'),
+    [0x877A2CF7] = joaat('suspenders'),
+    [0x5FC29285] = joaat('neckwear'),
+    [0x3C1A74CD] = joaat('cloaks'), 
+    [0x0662AC34]  = joaat('coats_closed'),
+    [0x9B2C8B89] = joaat('gunbelts'),
+    [0xF1542D11] = joaat('gunbelt_accs'),
+    [0xA6D134C6] = joaat('belts'),
+    [0xFAE9107F] = joaat('belt_buckles'),
+    [0xB6B6122D] = joaat('holsters_left'),
+    [0xB9E2FA01] = joaat('holsters_right'),
+    [0x94504D26] = joaat('satchels'),
+    [0x42247599] = joaat('satchels'),
+    [0x83887E88] = joaat('loadouts'),
+    [0x91CE9B20] = joaat('gauntlets'),
+    [0xF16A1D23] = joaat('jewelry_rings_left'),
+    [0x7A6BBD0B] = joaat('jewelry_rings_right'),
+    [0x7BC10759] = joaat('jewelry_bracelets'),
+    [0x79D7DF96] = joaat('accessories'),
+    [0x18729F39] = joaat('boot_accessories'),
+    [0x3107499B] = joaat('chaps'), 
+    [0x7505EF42] = joaat('masks'),
+    [0x76F0E272] = joaat('aprons'),
+    [0x96EDAE5C] = joaat('teeth'),
+    [0x0B3966C9]  = joaat('BODIES_UPPER'), 
+    [0x823687F5] = joaat('BODIES_LOWER'),    
+    [0x15D3C7F2] = joaat('beards_chin'),
+    [0xB6B63737] = joaat('beards_chops'),
+    [0xECC8B25A] = joaat('beards_mustache'),
+    [0xF8016BCA] = joaat('beards_complete'),
+    [0x3F7F3587] = joaat('badges'),
+    [0xA0E3AB7F] = joaat('skirts'), 
+    [0x7A96FACA] = joaat('neckties'),
+    [0x7BE77792] = joaat('holsters_knife'),
+    [0x7C00A8F0] = joaat('talisman_holster'),
+    [0x8EFB276A] = joaat('talisman_satchel'), 
+    [0xDA0E2C55] = joaat('ammo_rifles'),
+    [0xDB64A390] = joaat('talisman_wrist'),
+    [0x4A73515C] = joaat('MASKS_LARGE'), 
+    [0xEA24B45E] = joaat('eyes'), 
+    [0x8E84A2AA] = joaat('hair_accessories'),
+    [0xA2926F9B] = joaat('dresses'),
+    [0x72E6EF74] = joaat('armor'),
+    [0x05E47CA6]  = joaat('eyewear'),
+    [0x1AECF7DC] = joaat('talisman_belt'),
+    [0x49C89D9B] = joaat('holsters_crossdraw'),
+    [0x3F7DB302] = joaat('female_police_coats')
+}
 local Outfits = {
     male = {
         police = {
@@ -216,11 +266,67 @@ local Outfits = {
                 label = OutfitsSet.Language.Outfits[OutfitsSet.SetLanguage][13],        
                 clothes = {
                     {category=0xB3966C9, drawable=-1021748989, albedo=-869920080, normal=1387980394, material=808456005, tint0=0, tint1=0, tint2=0},
-                    {category=0x9925C067, drawable=-143286509, albedo=-1616330501, normal=1998993597, material=1412418863, tint0=141, tint1=254, tint2=254}, -- palarie femeie polistist originala
+                    {category=0x9925C067, drawable=173851521, albedo=-677161978, normal=-984372841, material=-888829087, palette=-76459397, tint0=9, tint1=9, tint2=9},
                     {category=0x3F7DB302, drawable=-51762828, albedo=2037809824, normal=-297276107, material=546130716, tint0=0, tint1=0, tint2=0},
                     {category=0x96EDAE5C, drawable=-964864985, albedo=528025401, normal=46748413, material=947155584, palette=-783849117, tint0=0, tint1=0, tint2=0},
+                    {category=0x9B2C8B89, drawable=-801288210, albedo=1831431859, normal=-1485549679, material=11183055, palette=-783849117, tint0=1, tint1=1, tint2=58},
+                    {category=0xB6B6122D, drawable=-184950738, albedo=98474534, normal=164956975, material=-934192357, palette=-183908539, tint0=0, tint1=60, tint2=8},
+                    {category=0xFAE9107F, drawable=1733721899, albedo=-1921859074, normal=-645191754, material=1671174462, palette=1090645383, tint0=44, tint1=44, tint2=44},
+                    {category=0x83887E88, drawable=-933319961, albedo=1542174995, normal=-74347389, material=-2020317616, palette=-783849117, tint0=14, tint1=60, tint2=60},
                 },
             }, 
+            [2] = {
+                label = OutfitsSet.Language.Outfits[OutfitsSet.SetLanguage][14],        
+                clothes = {
+                    {category=0xB3966C9, drawable=-1021748989, albedo=-869920080, normal=1387980394, material=808456005, tint0=0, tint1=0, tint2=0},
+                    {category=0x9925C067, drawable=525853119, albedo=-256293007, normal=-588281463, material=818090742, palette=1669565057, tint0=139, tint1=254, tint2=143}, -- -1725579161
+                    {category=0x3F7DB302, drawable=-51762828, albedo=2037809824, normal=-297276107, material=546130716, tint0=0, tint1=0, tint2=0},
+                    {category=0x96EDAE5C, drawable=-964864985, albedo=528025401, normal=46748413, material=947155584, palette=-783849117, tint0=0, tint1=0, tint2=0},
+                    {category=0x9B2C8B89, drawable=-801288210, albedo=1831431859, normal=-1485549679, material=11183055, palette=-783849117, tint0=1, tint1=1, tint2=58}, 
+                    {category=0xB6B6122D, drawable=-184950738, albedo=98474534, normal=164956975, material=-934192357, palette=-183908539, tint0=0, tint1=60, tint2=8},
+                    {category=0xFAE9107F, drawable=1733721899, albedo=-1921859074, normal=-645191754, material=1671174462, palette=1090645383, tint0=44, tint1=44, tint2=44},
+                },
+            }, 
+            [3] = {
+                label = OutfitsSet.Language.Outfits[OutfitsSet.SetLanguage][15],        
+                clothes = {
+                    {category=0xB3966C9, drawable=-1021748989, albedo=-869920080, normal=1387980394, material=808456005, tint0=0, tint1=0, tint2=0},
+                    {category=0x9925C067, drawable=1599070998, albedo=2014390805, normal=88936532, material=1534695787, palette=864404955, tint0=21, tint1=47, tint2=17}, -- -1725579161
+                    {category=0x3F7DB302, drawable=-51762828, albedo=2037809824, normal=-297276107, material=546130716, tint0=0, tint1=0, tint2=0},
+                    {category=0x96EDAE5C, drawable=-964864985, albedo=528025401, normal=46748413, material=947155584, palette=-783849117, tint0=0, tint1=0, tint2=0},
+                    {category=0x9B2C8B89, drawable=-801288210, albedo=1831431859, normal=-1485549679, material=11183055, palette=-783849117, tint0=1, tint1=1, tint2=58}, 
+                    {category=0xB6B6122D, drawable=-184950738, albedo=98474534, normal=164956975, material=-934192357, palette=-183908539, tint0=0, tint1=60, tint2=8},
+                    {category=0xFAE9107F, drawable=1733721899, albedo=-1921859074, normal=-645191754, material=1671174462, palette=1090645383, tint0=44, tint1=44, tint2=44},
+                },
+            }, 
+            [4] = {
+                label = OutfitsSet.Language.Outfits[OutfitsSet.SetLanguage][16],        
+                clothes = {
+                    {category=0x1D4C528A, drawable=2083284543, albedo=-947369340, normal=1731124431, material=995106235, palette=0, tint0=41, tint1=21, tint2=48},  
+                    {category=0xB3966C9, drawable=-1021748989, albedo=869437735, normal=1387980394, material=808456005, palette=-1436165981, tint0=21, tint1=21, tint2=21}, -- 188311241
+                    {category=0xE06D30CE, drawable=-1108277772, albedo=-1823412812, normal=-1849549052, material=-2110210949, palette=-1251868068, tint0=151, tint1=148, tint2=149}, -- -529714994 
+                    {category=0x777EC6EF, drawable=1415675066, albedo=-1084702659, normal=802515403, material=173588253, palette=-0, tint0=18, tint1=8, tint2=6}, -- 2004797167
+                    {category=0x9925C067, drawable=525853119, albedo=-256293007, normal=-588281463, material=818090742, palette=1669565057, tint0=139, tint1=254, tint2=143}, -- -1725579161
+                    {category=0x9B2C8B89, drawable=-801288210, albedo=1831431859, normal=-1485549679, material=11183055, palette=-783849117, tint0=1, tint1=1, tint2=58},
+                    {category=0xB6B6122D, drawable=-184950738, albedo=98474534, normal=164956975, material=-934192357, palette=-183908539, tint0=0, tint1=60, tint2=8},   
+                    {category=0xFAE9107F, drawable=1733721899, albedo=-1921859074, normal=-645191754, material=1671174462, palette=1090645383, tint0=44, tint1=44, tint2=44},
+                },
+            },  
+            [5] = {
+                label = OutfitsSet.Language.Outfits[OutfitsSet.SetLanguage][17],        
+                clothes = {
+                    {category=0x96EDAE5C, drawable=-964864985, albedo=528025401, normal=46748413, material=947155584, palette=-113397560, tint0=0, tint1=0, tint2=0}, -- -1762808228
+                    {category=0x1D4C528A, drawable=-1880975261, albedo=-2000352815, normal=-1967934901, material=803860073, palette=0, tint0=129, tint1=127, tint2=61}, -- 491541130
+                    {category=0x777EC6EF, drawable=843066048, albedo=1340862988, normal=1482867706, material=793710361, palette=0, tint0=254, tint1=249, tint2=243}, -- 2004797167
+                    {category=0xB3966C9, drawable=-1021748989, albedo=-869920080, normal=1387980394, material=808456005, palette=-113397560, tint0=0, tint1=0, tint2=0}, -- 188311241
+                    {category=0x2026C46D, drawable=1845749310, albedo=-373717140, normal=451466238, material=-1578353692, palette=0, tint0=44, tint1=45, tint2=1}, -- 539411565
+                    {category=0xE06D30CE, drawable=-29937627, albedo=-88386583, normal=106417110, material=-750677802, palette=0, tint0=250, tint1=254, tint2=52}, -- -529714994 
+                    {category=0x9925C067, drawable=525853119, albedo=-256293007, normal=-588281463, material=818090742, palette=-76459397, tint0=19, tint1=19, tint2=19}, -- -1725579161
+                    {category=0xEA24B45E, drawable=2044677326, albedo=-1122970326, normal=-27363481, material=-2146390887, palette=-1529893936, tint0=1, tint1=43, tint2=22}, -- -366693282
+                    {category=0x9B2C8B89, drawable=-801288210, albedo=1831431859, normal=-1485549679, material=11183055, palette=-783849117, tint0=1, tint1=1, tint2=58}, 
+                    {category=0xFAE9107F, drawable=1733721899, albedo=-1921859074, normal=-645191754, material=1671174462, palette=1090645383, tint0=44, tint1=44, tint2=44},
+                },
+            },  
         },
         prison = {  
             [1] = { -- prizonier
@@ -234,6 +340,19 @@ local Outfits = {
                 },
             },
         },
+        doctor = {
+            [1] = {
+                label = OutfitsSet.Language.Outfits[OutfitsSet.SetLanguage][25],
+                clothes = {
+                    {category=0x96EDAE5C, drawable=-964864985, albedo=528025401, normal=46748413, material=947155584, palette=1090645383, tint0=15, tint1=15, tint2=15}, -- -1762808228
+                    {category=0x777EC6EF, drawable=-272917581, albedo=99617969, normal=686173355, material=-1487205283, palette=-1251868068, tint0=21, tint1=254, tint2=253}, -- 2004797167
+                    {category=0xB3966C9, drawable=764757887, albedo=-1713539050, normal=1387980394, material=808456005, palette=0, tint0=0, tint1=0, tint2=0}, -- 188311241
+                    {category=0x2026C46D, drawable=497257015, albedo=-1888764607, normal=-1539908218, material=861402352, palette=1090645383, tint0=15, tint1=15, tint2=15}, -- 539411565
+                    {category=0xEA24B45E, drawable=2044677326, albedo=-1122970326, normal=-27363481, material=-2146390887, palette=-1529893936, tint0=3, tint1=73, tint2=43}, -- -366693282
+                    {category=0xA0E3AB7F, drawable=-262233026, albedo=-389433163, normal=417220687, material=-983337476, palette=1090645383, tint0=15, tint1=16, tint2=15}, -- -1595692161
+                }
+            }
+        }
     },
 }
 
@@ -265,6 +384,7 @@ function SetOutfit(type, outfit)
             if componentIndex and name then
                 local drawable, albedo, normal, material = Citizen.InvokeNative(0xA9C28516A6DC9D56, Ped, componentIndex, Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt())
                 local palette, tint0, tint1, tint2 = Citizen.InvokeNative(0xE7998FEC53A33BBE, Ped, componentIndex, Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt())
+                print(string.format("{category=0x%X, drawable=%d, albedo=%d, normal=%d, material=%d, palette=%d, tint0=%d, tint1=%d, tint2=%d},", category, drawable, albedo, normal, material, palette, tint0, tint1, tint2))          
                 PlayerSkinData[category] = {drawable=drawable, albedo=albedo, normal=normal, material=material, palette=palette, tint0=tint0, tint1=tint1, tint2=tint2}
             end
         end 
@@ -317,9 +437,15 @@ exports('SetOutfit', SetOutfit)
 
 function SetDefaultOutfit()
     local Ped = PlayerPedId()
-    if not PlayerSkinData or next(PlayerSkinData) == nil then
-        print("^4[BDO-OUTFITS]: Nu există haine default salvate pentru acest player!^7")
+    if not PlayerSkinData or next(PlayerSkinData) == nil then 
         return
+    end
+    for category, name in pairs(CategoryNames) do
+        if name ~= 'BODIES_UPPER' and name ~= 'BODIES_LOWER' then
+            Citizen.InvokeNative(0xD710A5007C2AC539, Ped, category, 0)
+            Citizen.InvokeNative(0xAAB86462966168CE, Ped, true)
+            Citizen.InvokeNative(0xCC8CA3E88256E58F, Ped, false, true, true, true, false)
+        end
     end
     for category, data in pairs(PlayerSkinData) do
         SetMetaPedTag(Ped, data.drawable, data.albedo, data.normal, data.material, data.palette, data.tint0, data.tint1, data.tint2)
@@ -382,131 +508,77 @@ RegisterNetEvent('bdo-outfits:client:SetOutfit', function(data)
     SetOutfit(data.type, data.outfit)
 end)
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- function GetClosestNPC(radius)
---     local playerPed = PlayerPedId()
---     local playerCoords = GetEntityCoords(playerPed)
---     local handle, ped = FindFirstPed()
---     local success
---     local closestPed = nil
---     local closestDist = radius or 3.0
-
---     repeat
---         if DoesEntityExist(ped) and not IsPedAPlayer(ped) then
---             local pedCoords = GetEntityCoords(ped)
---             local dist = #(playerCoords - pedCoords)
---             if dist < closestDist then
---                 closestDist = dist
---                 closestPed = ped
---             end
---         end
---         success, ped = FindNextPed(handle)
---     until not success
---     EndFindPed(handle)
---     return closestPed
--- end  
  
--- function PrintAllPedComponents(ped)
---     while not IsPedReadyToRender(ped) do
---         Wait(0)
---     end 
---     local playerPed = PlayerPedId()
---     for category, name in pairs(CategoryNames) do
---         if name ~= 'BODIES_UPPER' and name ~= 'BODIES_LOWER' then
---             Citizen.InvokeNative(0xD710A5007C2AC539, playerPed, category, 0)
---             Citizen.InvokeNative(0xAAB86462966168CE, playerPed, true)
---             Citizen.InvokeNative(0xCC8CA3E88256E58F, playerPed, false, true, true, true, false)
---         end
---     end 
+function GetClosestNPC(radius)
+    local playerPed = PlayerPedId()
+    local playerCoords = GetEntityCoords(playerPed)
+    local handle, ped = FindFirstPed()
+    local success
+    local closestPed = nil
+    local closestDist = radius or 3.0
+
+    repeat
+        if DoesEntityExist(ped) and not IsPedAPlayer(ped) then
+            local pedCoords = GetEntityCoords(ped)
+            local dist = #(playerCoords - pedCoords)
+            if dist < closestDist then
+                closestDist = dist
+                closestPed = ped
+            end
+        end
+        success, ped = FindNextPed(handle)
+    until not success
+    EndFindPed(handle)
+    return closestPed
+end  
  
---     for category, name in pairs(CategoryNames) do   
---         local componentIndex = GetComponentIndexByCategory(ped, category) or GetComponentIndexByCategory(ped, joaat(name))  
---         if componentIndex and name then 
---             local drawable, albedo, normal, material = Citizen.InvokeNative(0xA9C28516A6DC9D56, ped, componentIndex, Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt())
---             local palette, tint0, tint1, tint2 = Citizen.InvokeNative(0xE7998FEC53A33BBE, ped, componentIndex, Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt())
+function PrintAllPedComponents(ped)
+    while not IsPedReadyToRender(ped) do
+        Wait(0)
+    end 
+    local playerPed = PlayerPedId()
+    for category, name in pairs(CategoryNames) do
+        if name ~= 'BODIES_UPPER' and name ~= 'BODIES_LOWER' then
+            Citizen.InvokeNative(0xD710A5007C2AC539, playerPed, category, 0)
+            Citizen.InvokeNative(0xAAB86462966168CE, playerPed, true)
+            Citizen.InvokeNative(0xCC8CA3E88256E58F, playerPed, false, true, true, true, false)
+        end
+    end 
+ 
+    for category, name in pairs(CategoryNames) do   
+        local componentIndex = GetComponentIndexByCategory(ped, category) or GetComponentIndexByCategory(ped, joaat(name))  
+        if componentIndex and name then 
+            local drawable, albedo, normal, material = Citizen.InvokeNative(0xA9C28516A6DC9D56, ped, componentIndex, Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt())
+            local palette, tint0, tint1, tint2 = Citizen.InvokeNative(0xE7998FEC53A33BBE, ped, componentIndex, Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt())
     
---             SetMetaPedTag(playerPed, drawable, albedo, normal, material, palette, tint0, tint1, tint2)
---             print(string.format("{category=0x%X, drawable=%d, albedo=%d, normal=%d, material=%d, palette=%d, tint0=%d, tint1=%d, tint2=%d}, -- %s", category, drawable, albedo, normal, material, palette, tint0, tint1, tint2, tostring(name)))
---         else
---             --print("Nu există componentă pentru slotul: " .. name)
---         end
---     end
+            SetMetaPedTag(playerPed, drawable, albedo, normal, material, palette, tint0, tint1, tint2)
+            print(string.format("{category=0x%X, drawable=%d, albedo=%d, normal=%d, material=%d, palette=%d, tint0=%d, tint1=%d, tint2=%d}, -- %s", category, drawable, albedo, normal, material, palette, tint0, tint1, tint2, tostring(name)))
+        else
+            --print("Nu există componentă pentru slotul: " .. name)
+        end
+    end
  
---     Citizen.InvokeNative(0xAAB86462966168CE, playerPed, true)
---     Citizen.InvokeNative(0xCC8CA3E88256E58F, playerPed, false, true, true, true, false)
--- end
+    Citizen.InvokeNative(0xAAB86462966168CE, playerPed, true)
+    Citizen.InvokeNative(0xCC8CA3E88256E58F, playerPed, false, true, true, true, false)
+end
 
--- RegisterCommand("asd", function()
---     local ped = GetClosestNPC(3.0) -- sau PlayerPedId() pentru player
---     if ped then
---         PrintAllPedComponents(ped)
---     else
---         print("Nu e niciun NPC aproape de tine.")
---     end
--- end, false)
+RegisterCommand("asd", function()
+    local ped = GetClosestNPC(3.0) -- sau PlayerPedId() pentru player
+    if ped then
+        PrintAllPedComponents(ped)
+    else
+        print("Nu e niciun NPC aproape de tine.")
+    end
+end, false)
 
--- RegisterCommand("rrr", function(_, args)
---     local outfit = tonumber(args[1])
---     local ped = GetClosestNPC(3.0) -- sau PlayerPedId() pentru player
---     if ped then 
---         SetPedOutfitPreset(ped, outfit)
---     else
---         print("Nu e niciun NPC aproape de tine.")
---     end
--- end, false)
+RegisterCommand("rrr", function(_, args)
+    local outfit = tonumber(args[1])
+    local ped = GetClosestNPC(3.0) -- sau PlayerPedId() pentru player
+    if ped then 
+        SetPedOutfitPreset(ped, outfit)
+    else
+        print("Nu e niciun NPC aproape de tine.")
+    end
+end, false)
  
   
