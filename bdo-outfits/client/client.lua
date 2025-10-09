@@ -1606,6 +1606,27 @@ CreateThread(function()
             local Outfit = IsNaked and Outfits[Gender].naked[1] or Outfits[Gender][OutfitType] and Outfits[Gender][OutfitType][OutfitIndex]
             if Outfit and Outfit.clothes then 
                 local mismatch = false
+                -- Set din ce componente are outfitul curent
+                local allowedCategories = {}
+                for _, item in pairs(Outfit.clothes) do
+                    allowedCategories[item.category] = true
+                end
+                -- Scoate de pe ped orice component care nu e in allowedCategories
+                local clearedAny = false
+                for category, _ in pairs(CategoryNames) do
+                    if not allowedCategories[category] then 
+                        local componentIndex = GetComponentIndexByCategory(Ped, category)
+                        if componentIndex then
+                            Citizen.InvokeNative(0xD710A5007C2AC539, Ped, category, 0) -- clear slot
+                            clearedAny = true
+                        end
+                    end
+                end
+                if clearedAny then
+                    Citizen.InvokeNative(0xAAB86462966168CE, Ped, true)
+                    Citizen.InvokeNative(0xCC8CA3E88256E58F, Ped, false, true, true, true, false)
+                end
+                -- Verificare dacă un slot configurat se potrivește cu config-ul
                 for _, item in pairs(Outfit.clothes) do 
                     local componentIndex = GetComponentIndexByCategory(Ped, item.category)
                     if componentIndex then 
@@ -1623,6 +1644,34 @@ CreateThread(function()
         end
     end
 end)
+
+
+-- CreateThread(function()
+--     while true do
+--         Wait(500) 
+--         if OutfitType and OutfitIndex or IsNaked then
+--             local Ped = PlayerPedId()
+--             local Gender = IsPedMale(Ped) and "male" or "female"
+--             local Outfit = IsNaked and Outfits[Gender].naked[1] or Outfits[Gender][OutfitType] and Outfits[Gender][OutfitType][OutfitIndex]
+--             if Outfit and Outfit.clothes then 
+--                 local mismatch = false
+--                 for _, item in pairs(Outfit.clothes) do 
+--                     local componentIndex = GetComponentIndexByCategory(Ped, item.category)
+--                     if componentIndex then 
+--                         local drawable, albedo, normal, material = Citizen.InvokeNative(0xA9C28516A6DC9D56, Ped, componentIndex, Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt(), Citizen.PointerValueInt()) 
+--                         if drawable ~= item.drawable or albedo ~= item.albedo or normal ~= item.normal or material ~= item.material then 
+--                             mismatch = true
+--                             break
+--                         end
+--                     end
+--                 end
+--                 if mismatch then
+--                     SetOutfit(OutfitType, OutfitIndex)
+--                 end
+--             end
+--         end
+--     end
+-- end)
 
 -- function GetClosestNPC(radius)
 --     local playerPed = PlayerPedId()
