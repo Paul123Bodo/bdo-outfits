@@ -1,5 +1,6 @@
-DISCORD: https://discord.com/invite/4XbzV6HJzn 
-TEBEX: https://bdo-scripts.tebex.io/package/6939275
+TEBEX: https://bdo-scripts.tebex.io/category/2567903
+DISCORD: https://discord.com/invite/4XbzV6HJzn
+YOUTUBE: https://www.youtube.com/@BODO_SCRIPTS/featured
 
 
 exports['bdo-outfits']:SetOutfit('police', 1) -- using for male and female
