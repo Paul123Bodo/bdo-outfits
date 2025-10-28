@@ -20,6 +20,8 @@ shared_scripts {
 
 escrow_ignore {
   'client/language.lua',
+  'ss-policejob/functions.lua',
+  'ss-medicjob/functions.lua',
 }
   
 dependencies { 
